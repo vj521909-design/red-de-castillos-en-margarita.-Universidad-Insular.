@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Turística Digital - Castillos y Fortines de Margarita</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            caribbean: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              800: '#115e59',
+              900: '#134e4a',
+            },
+            colonial: {
+              gold: '#D4AF37',
+              terracotta: '#C85A32',
+              sand: '#F7F4EA',
+              navy: '#1A2B4C'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(26, 43, 76, 0.75) 0%, rgba(26, 43, 76, 0.9) 100%);
+    }
+  </style>
+</head>
+<body class="bg-colonial-sand text-slate-800 font-sans min-h-screen flex flex-col justify-between antialiased">
+
+  <!-- HEADER / NAVIGATION -->
+  <header class="sticky top-0 z-40 bg-colonial-navy/95 backdrop-blur-md text-white shadow-lg border-b border-amber-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo / Title -->
+        <div class="flex items-center gap-3">
+          <div class="bg-amber-500 text-colonial-navy p-2.5 rounded-xl shadow-md font-bold text-xl">
+            <i class="fa-solid fa-fort-awesome"></i>
+          </div>
+          <div>
+            <h1 class="text-lg sm:text-xl font-serif font-bold text-amber-400 tracking-wide leading-tight">
+              Margarita Historic Network
+            </h1>
+            <p class="text-xs text-slate-300 hidden sm:block" data-i18n="subtitle">
+              Red de Castillos y Fortines de la Isla de Margarita
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Actions -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <!-- Language Selector -->
+          <div class="flex items-center bg-slate-800/80 p-1 rounded-xl border border-slate-700">
+            <button id="btn-lang-es" onclick="switchLanguage('es')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-500 text-colonial-navy shadow-sm">
+              🇪🇸 ES
+            </button>
+            <button id="btn-lang-en" onclick="switchLanguage('en')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white">
+              🇺🇸 EN
+            </button>
+          </div>
+
+          <!-- Academic Credits Button -->
+          <button onclick="openModal('modal-credits')" class="flex items-center gap-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all">
+            <i class="fa-solid fa-graduation-cap text-base"></i>
+            <span class="hidden md:inline" data-i18n="btnCredits">Créditos Académicos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative bg-colonial-navy text-white py-16 lg:py-24 overflow-hidden border-b-4 border-amber-500">
+    <div class="absolute inset-0 z-0 opacity-25 bg-cover bg-center" style="background-image: url('borromeo1.jpg');"></div>
+    <div class="absolute inset-0 hero-gradient z-0"></div> 
+    
+    <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-300 font-semibold text-xs tracking-wider uppercase border border-amber-500/30 mb-4" data-i18n="heroBadge">
+        Patrimonio Histórico y Turístico
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-6 leading-tight" data-i18n="heroTitle">
+        Fortalezas Coloniales de la Perla del Caribe
+      </h2>
+      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8" data-i18n="heroDesc">
+        Explore la vibrante historia libertadora, la magnífica arquitectura militar colonial y las panorámicas incomparables del Mar Caribe a través de sus tres más emblemáticos baluartes.
+      </p>
+      
+      <!-- Quick Navigation Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-4 max-w-3xl mx-auto">
+        <a href="#galera" class="flex-1 min-w-[140px] bg-white/10 hover:bg-amber-500 hover:text-colonial-navy backdrop-blur-md border border-white/20 px-4 py-3 rounded-xl font-medium text-xs sm:text-sm text-center transition-all shadow-md">
+          <i class="fa-solid fa-shield-halved mb-1 block text-base"></i>
+          Fortín de La Galera
+        </a>
+        <a href="#borromeo" class="flex-1 min-w-[140px] bg-white/10 hover:bg-amber-500 hover:text-colonial-navy backdrop-blur-md border border-white/20 px-4 py-3 rounded-xl font-medium text-xs sm:text-sm text-center transition-all shadow-md">
+          <i class="fa-solid fa-chess-rook mb-1 block text-base"></i>
+          San Carlos de Borromeo
+        </a>
+        <a href="#santarosa" class="flex-1 min-w-[140px] bg-white/10 hover:bg-amber-500 hover:text-colonial-navy backdrop-blur-md border border-white/20 px-4 py-3 rounded-xl font-medium text-xs sm:text-sm text-center transition-all shadow-md">
+          <i class="fa-solid fa-crown mb-1 block text-base"></i>
+          Santa Rosa de la Eminencia
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 flex-grow">
+
+    <!-- FORTRESS 1: FORTÍN DE LA GALERA -->
+    <article id="galera" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200 transition-all hover:shadow-2xl">
+      <div class="bg-gradient-to-r from-colonial-navy to-slate-800 text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-widest" data-i18n="locJuanGriego">Juan Griego - Municipio Gaspar Marcano</span>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">Fortín de La Galera</h3>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Fortin+de+La+Galera+Juan+Griego+Margarita" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-colonial-navy font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-md">
+          <i class="fa-solid fa-map-location-dot text-sm"></i>
+          <span data-i18n="btnGPS">Ver Ubicación GPS</span>
+        </a>
+      </div>
+
+      <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Gallery Column -->
+        <div class="lg:col-span-6 space-y-4">
+          <h4 class="text-sm font-bold uppercase text-slate-500 tracking-wider flex items-center gap-2" data-i18n="galleryTitle">
+            <i class="fa-solid fa-camera text-amber-600"></i> Galería Fotográfica Real
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('fortin1.jpg', 'Vista panorámica y cañones sobre la bahía de Juan Griego')">
+              <img src="fortin1.jpg" alt="Vista panorámica y cañones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('fortin11.jpg', 'Estructura militar y murallas fortificadas')">
+              <img src="fortin11.jpg" alt="Estructura y murallas del fortín" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('fortin33.jpg', 'Atardecer místico sobre la Laguna de Los Mártires')">
+              <img src="fortin33.jpg" alt="Vista atardecer y Laguna de Los Mártires" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 italic text-center" data-i18n="clickEnlarge">Haz clic en cualquier imagen para ampliarla en alta resolución</p>
+        </div>
+
+        <!-- Historical Info Column -->
+        <div class="lg:col-span-6 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="text-sm font-bold uppercase text-amber-700 tracking-wider mb-2 flex items-center gap-2" data-i18n="historyTitle">
+              <i class="fa-solid fa-book-bookmark"></i> Reseña Histórica Enriquecida
+            </h4>
+            <div class="text-slate-600 text-sm leading-relaxed space-y-3" data-i18n="galeraHistory">
+              <p>Construido en 1811 por la Junta Provincial de Margarita en lo alto de una colina estratégica para vigilar el puerto de Juan Griego y la bahía de La Galera contra incursiones navales.</p>
+              <p>Fue el glorioso escenario de la desgarradora <strong>Batalla de Juan Griego en agosto de 1817</strong>. Durante este enfrentamiento patriota contra las tropas realistas del general Pablo Morillo, la pólvora explotó trágicamente dentro del almacén del fortín, pereciendo sus valientes defensores y dando origen al nombre de la adyacente <em>Laguna de Los Mártires</em>.</p>
+            </div>
+          </div>
+
+          <!-- Quick Specs -->
+          <div class="bg-amber-50/80 rounded-2xl p-4 border border-amber-200/60 grid grid-cols-2 gap-4 text-xs">
+            <div>
+              <span class="block font-bold text-amber-900" data-i18n="builtYear">Año de Construcción</span>
+              <span class="text-slate-700">1811</span>
+            </div>
+            <div>
+              <span class="block font-bold text-amber-900" data-i18n="attraction">Atracción Principal</span>
+              <span class="text-slate-700" data-i18n="galeraSunset">Atardeceres y relatos de los niños guías</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FORTRESS 2: CASTILLO SAN CARLOS DE BORROMEO -->
+    <article id="borromeo" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200 transition-all hover:shadow-2xl">
+      <div class="bg-gradient-to-r from-colonial-navy to-slate-800 text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-widest" data-i18n="locPampatar">Pampatar - Municipio Maneiro</span>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">Castillo San Carlos de Borromeo</h3>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Castillo+San+Carlos+de+Borromeo+Pampatar+Margarita" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-colonial-navy font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-md">
+          <i class="fa-solid fa-map-location-dot text-sm"></i>
+          <span data-i18n="btnGPS">Ver Ubicación GPS</span>
+        </a>
+      </div>
+
+      <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Gallery Column -->
+        <div class="lg:col-span-6 space-y-4">
+          <h4 class="text-sm font-bold uppercase text-slate-500 tracking-wider flex items-center gap-2" data-i18n="galleryTitle">
+            <i class="fa-solid fa-camera text-amber-600"></i> Galería Fotográfica Real
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('borromeo1.jpg', 'Vista panorámica principal del Castillo San Carlos de Borromeo')">
+              <img src="borromeo1.jpg" alt="Vista principal del Castillo San Carlos de Borromeo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('borromeo2.jpg', 'Foso de protección defensiva y puente levadizo de acceso')">
+              <img src="borromeo2.jpg" alt="Vista de la fosa y acceso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('sancarlos3.jpg', 'Batería de cañones de bronce orientados hacia la Bahía de Pampatar')">
+              <img src="sancarlos3.jpg" alt="Detalle de los cañones frente a la Bahía de Pampatar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 italic text-center" data-i18n="clickEnlarge">Haz clic en cualquier imagen para ampliarla en alta resolución</p>
+        </div>
+
+        <!-- Historical Info Column -->
+        <div class="lg:col-span-6 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="text-sm font-bold uppercase text-amber-700 tracking-wider mb-2 flex items-center gap-2" data-i18n="historyTitle">
+              <i class="fa-solid fa-book-bookmark"></i> Reseña Histórica Enriquecida
+            </h4>
+            <div class="text-slate-600 text-sm leading-relaxed space-y-3" data-i18n="borromeoHistory">
+              <p>Es la fortificación militar colonial más avanzada y mejor preservada de Margarita. Diseñada por el ingeniero militar Don Juan Betín, su construcción se inició en 1662 tras repetidos saques de corsarios holandeses e ingleses.</p>
+              <p>Posee una estructura clásica de estrella con bastiones angulares y foso circundante. En 1816, la heroína independentista <strong>Luisa Cáceres de Arismendi</strong> estuvo retenida temporalmente en sus calabozos antes de ser trasladada a España.</p>
+            </div>
+          </div>
+
+          <!-- Quick Specs -->
+          <div class="bg-amber-50/80 rounded-2xl p-4 border border-amber-200/60 grid grid-cols-2 gap-4 text-xs">
+            <div>
+              <span class="block font-bold text-amber-900" data-i18n="builtYear">Año de Construcción</span>
+              <span class="text-slate-700">1662 - 1684</span>
+            </div>
+            <div>
+              <span class="block font-bold text-amber-900" data-i18n="attraction">Atracción Principal</span>
+              <span class="text-slate-700" data-i18n="borromeoAttr">Foso defensivo, cañones y museo histórico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FORTRESS 3: CASTILLO DE SANTA ROSA DE LA EMINENCIA -->
+    <article id="santarosa" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200 transition-all hover:shadow-2xl">
+      <div class="bg-gradient-to-r from-colonial-navy to-slate-800 text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-widest" data-i18n="locAsuncion">La Asunción - Capital del Estado Nueva Esparta</span>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">Castillo de Santa Rosa de la Eminencia</h3>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Castillo+de+Santa+Rosa+La+Asuncion+Margarita" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-colonial-navy font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-md">
+          <i class="fa-solid fa-map-location-dot text-sm"></i>
+          <span data-i18n="btnGPS">Ver Ubicación GPS</span>
+        </a>
+      </div>
+
+      <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Gallery Column -->
+        <div class="lg:col-span-6 space-y-4">
+          <h4 class="text-sm font-bold uppercase text-slate-500 tracking-wider flex items-center gap-2" data-i18n="galleryTitle">
+            <i class="fa-solid fa-camera text-amber-600"></i> Galería Fotográfica Real
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('santarosa2.jpg', 'Panorama general de la terraza defensiva con artillería de época')">
+              <img src="santarosa2.jpg" alt="Panorama y terraza con cañones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('santarosa1.jpg', 'Portada principal y portalón colonial del castillo')">
+              <img src="santarosa1.jpg" alt="Entrada principal al castillo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+            <div class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer bg-slate-100 aspect-[4/3]" onclick="openLightbox('calabozo22.jpg', 'calabozo de Luisa Cáceres de Arismendi')">
+              <img src="calabozo22.jpg" alt="Garita y murallas con vista al valle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-lg mb-1 block"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 italic text-center" data-i18n="clickEnlarge">Haz clic en cualquier imagen para ampliarla en alta resolución</p>
+        </div>
+
+        <!-- Historical Info Column -->
+        <div class="lg:col-span-6 flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="text-sm font-bold uppercase text-amber-700 tracking-wider mb-2 flex items-center gap-2" data-i18n="historyTitle">
+              <i class="fa-solid fa-book-bookmark"></i> Reseña Histórica Enriquecida
+            </h4>
+            <div class="text-slate-600 text-sm leading-relaxed space-y-3" data-i18n="santarosaHistory">
+              <p>Construido entre 1677 y 1683 tras el cruento saqueo del pirata francés en 1677, esta altiva fortaleza domina estrátegicamente todo el Valle de Santa Lucía.</p>
+              <p>Es mundialmente famoso por ser la cárcel de calicanto donde estuvo prisionera la heroína <strong>Luisa Cáceres de Arismendi</strong> a sus 16 años, lugar trágico donde dio a luz a su hija que falleció al nacer. Se conserva la célebre inscripción de su calabozo: <em>"Sin patria no quiero vida"</em>.</p>
+            </div>
+          </div>
+
+          <!-- Quick Specs -->
+          <div class="bg-amber-50/80 rounded-2xl p-4 border border-amber-200/60 grid grid-cols-2 gap-4 text-xs">
+            <div>
+              <span class="block font-bold text-amber-900" data-i18n="builtYear">Año de Construcción</span>
+              <span class="text-slate-700">1677 - 1683</span>
+            </div>
+            <div>
+              <span class="block font-bold text-amber-900" data-i18n="attraction">Atracción Principal</span>
+              <span class="text-slate-700" data-i18n="santarosaAttr">Calabozo de Luisa C. de Arismendi y garita panorámica</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- USER REVIEWS & RATING SECTION -->
+    <section class="bg-white rounded-3xl shadow-xl p-6 sm:p-10 border border-slate-200">
+      <div class="max-w-3xl mx-auto text-center mb-8">
+        <h3 class="text-2xl sm:text-3xl font-serif font-bold text-colonial-navy" data-i18n="feedbackTitle">
+          Califica tu Experiencia Turística
+        </h3>
+        <p class="text-sm text-slate-500 mt-2" data-i18n="feedbackDesc">
+          Tus valiosas opiniones ayudan a preservar y difundir nuestro patrimonio histórico regional.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <!-- Formulario sin envío por correo -->
+        <form id="review-form" onsubmit="saveReview(event)" class="md:col-span-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-600 mb-1" data-i18n="labelName">Tu Nombre:</label>
+            <input type="text" id="review-name" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" placeholder="Ej. María Hernández">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-600 mb-1" data-i18n="labelFortress">Fortaleza Visitada:</label>
+            <select id="review-fort" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white">
+              <option value="Fortín de La Galera">Fortín de La Galera (Juan Griego)</option>
+              <option value="Castillo San Carlos de Borromeo">Castillo San Carlos de Borromeo (Pampatar)</option>
+              <option value="Castillo Santa Rosa">Castillo Santa Rosa de la Eminencia (La Asunción)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-600 mb-1" data-i18n="labelRating">Puntuación:</label>
+            <div class="flex gap-2 text-2xl text-amber-400 cursor-pointer" id="star-rating">
+              <i class="fa-solid fa-star star-btn" onclick="setRating(1)"></i>
+              <i class="fa-solid fa-star star-btn" onclick="setRating(2)"></i>
+              <i class="fa-solid fa-star star-btn" onclick="setRating(3)"></i>
+              <i class="fa-solid fa-star star-btn" onclick="setRating(4)"></i>
+              <i class="fa-solid fa-star star-btn" onclick="setRating(5)"></i>
+            </div>
+            <input type="hidden" id="review-rating-val" value="5">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-600 mb-1" data-i18n="labelComment">Comentarios o Consejos:</label>
+            <textarea id="review-comment" rows="3" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" placeholder="¿Qué fue lo que más te gustó?"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-colonial-navy hover:bg-slate-800 text-amber-400 font-bold py-3 rounded-xl text-sm transition-all shadow-md">
+            <i class="fa-solid fa-paper-plane mr-2"></i> <span data-i18n="btnSubmit">Publicar Opinión</span>
+          </button>
+        </form>
+
+        <!-- Reviews List -->
+        <div class="md:col-span-6 space-y-4">
+          <h4 class="text-sm font-bold uppercase text-slate-600 tracking-wider flex items-center justify-between">
+            <span data-i18n="reviewsListTitle">Opiniones Recientes</span>
+            <span id="review-count" class="bg-amber-100 text-amber-900 text-xs px-2.5 py-0.5 rounded-full font-bold">0</span>
+          </h4>
+          
+          <div id="reviews-container" class="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+            <!-- Dynamically populated reviews -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX / FULLSCREEN IMAGE MODAL -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex items-center justify-center p-4" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white hover:text-amber-400 text-3xl focus:outline-none transition-colors">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="max-w-4xl w-full text-center space-y-3" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Vista Ampliada" class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl object-contain border border-white/20">
+      <p id="lightbox-caption" class="text-amber-300 font-medium text-sm sm:text-base px-4"></p>
+    </div>
+  </div>
+
+  <!-- ACADEMIC CREDITS MODAL -->
+  <div id="modal-credits" class="fixed inset-0 z-50 bg-black/60 hidden backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal('modal-credits')">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 text-slate-800 relative" onclick="event.stopPropagation()">
+      <button onclick="closeModal('modal-credits')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-2xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="text-center space-y-4">
+        <img src="logo-iui.png" alt="Logo IUI" class="w-20 h-20 mx-auto object-contain">
+
+        <h3 class="text-2xl font-serif font-bold text-colonial-navy" data-i18n="creditModalTitle">
+          Créditos del Proyecto Académico
+        </h3>
+
+        <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200 text-left text-xs sm:text-sm space-y-2">
+          <p class="font-semibold text-slate-800">
+            <i class="fa-solid fa-user-graduate text-amber-600 mr-1.5"></i>
+            <span>Estudiante:</span> <span class="font-bold text-amber-900">Andrea Jiménez</span>
+          </p>
+          <p class="font-semibold text-slate-800">
+            <i class="fa-solid fa-hotel text-amber-600 mr-1.5"></i>
+            <span>Carrera:</span> <span class="font-bold text-amber-900">Gestión Hotelera</span>
+          </p>
+          <p class="font-semibold text-slate-800">
+            <i class="fa-solid fa-chalkboard-user text-amber-600 mr-1.5"></i>
+            <span data-i18n="tutorLabel">Tutora Académica:</span> <span class="font-bold text-amber-900">Prof. Gloria Jiménez</span>
+          </p>
+          <p class="font-semibold text-slate-800">
+            <i class="fa-solid fa-building-columns text-amber-600 mr-1.5"></i>
+            <span>Institución:</span> <span class="font-bold text-amber-900">Instituto Universitario Insular</span>
+          </p>
+          <p class="font-semibold text-slate-800">
+            <i class="fa-solid fa-location-dot text-amber-600 mr-1.5"></i>
+            <span data-i18n="municipalityLabel">Municipio / Ubicación:</span> <span class="font-bold text-amber-900">Municipio Gaspar Marcano, Isla de Margarita</span>
+          </p>
+        </div>
+
+        <p class="text-xs text-slate-500 leading-relaxed" data-i18n="creditDesc">
+          Este recurso tecnológico interactivo ha sido desarrollado como una herramienta digital educativa y turística orientada a promover el patrimonio histórico y la difusión cultural de los castillos y fortines de Nueva Esparta.
+        </p>
+
+        <button onclick="closeModal('modal-credits')" class="w-full bg-colonial-navy text-white font-bold py-2.5 rounded-xl text-xs hover:bg-slate-800 transition-colors">
+          <span data-i18n="btnClose">Cerrar Ventana</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-colonial-navy text-white py-10 border-t border-amber-500/30">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+      
+      <!-- Logo IUI -->
+      <div class="flex justify-center items-center">
+        <div class="bg-white p-2 rounded-full shadow-md">
+          <img src="logo-iui.png" alt="Instituto Universitario Insular" class="h-16 w-16 object-contain">
+        </div>
+      </div>
+
+      <!-- Nombre de la Universidad -->
+      <h4 class="text-base font-serif font-bold text-amber-400 tracking-wider">
+        INSTITUTO UNIVERSITARIO INSULAR
+      </h4>
+
+      <!-- Créditos de la Estudiante -->
+      <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
+        Desarrollado para el Proyecto Académico de Investigación Turística y Patrimonial por la estudiante <strong class="text-amber-300">Andrea Jiménez</strong> de la carrera <strong class="text-amber-300">Gestión Hotelera</strong>.
+      </p>
+
+      <p class="text-[11px] text-slate-400 pt-2 border-t border-slate-800 max-w-xl mx-auto">
+        © <span id="current-year">2026</span> Red de Castillos de la Isla de Margarita | Estado Nueva Esparta, Venezuela.<br>
+        Bajo la tutoría de la <span class="text-amber-300/80">Prof. Gloria Jiménez</span> - Municipio Gaspar Marcano
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTING & INTERACTIVITY -->
+  <script>
+    const i18n = {
+      es: {
+        subtitle: "Red de Castillos y Fortines de la Isla de Margarita",
+        btnCredits: "Créditos Académicos",
+        heroBadge: "Patrimonio Histórico y Turístico",
+        heroTitle: "Fortalezas Coloniales de la Perla del Caribe",
+        heroDesc: "Explore la vibrante historia libertadora, la magnífica arquitectura militar colonial y las panorámicas incomparables del Mar Caribe a través de sus tres más emblemáticos baluartes.",
+        locJuanGriego: "Juan Griego - Municipio Gaspar Marcano",
+        locPampatar: "Pampatar - Municipio Maneiro",
+        locAsuncion: "La Asunción - Capital del Estado Nueva Esparta",
+        btnGPS: "Ver Ubicación GPS",
+        galleryTitle: "Galería Fotográfica Real",
+        clickEnlarge: "Haz clic en cualquier imagen para ampliarla en alta resolución",
+        historyTitle: "Reseña Histórica Enriquecida",
+        builtYear: "Año de Construcción",
+        attraction: "Atracción Principal",
+        galeraSunset: "Atardeceres y relatos de los niños guías",
+        borromeoAttr: "Foso defensivo, cañones y museo histórico",
+        santarosaAttr: "Calabozo de Luisa C. de Arismendi y garita panorámica",
+        galeraHistory: "<p>Construido en 1811 por la Junta Provincial de Margarita en lo alto de una colina estratégica para vigilar el puerto de Juan Griego y la bahía de La Galera contra incursiones navales.</p><p>Fue el glorioso escenario de la desgarradora <strong>Batalla de Juan Griego en agosto de 1817</strong>. Durante este enfrentamiento patriota contra las tropas realistas del general Pablo Morillo, la pólvora explotó trágicamente dentro del almacén del fortín, pereciendo sus valientes defensores y dando origen al nombre de la adyacente <em>Laguna de Los Mártires</em>.</p>",
+        borromeoHistory: "<p>Es la fortificación militar colonial más avanzada y mejor preservada de Margarita. Diseñada por el ingeniero militar Don Juan Betín, su construcción se inició en 1662 tras repetidos saques de corsarios holandeses e ingleses.</p><p>Posee una estructura clásica de estrella con bastiones angulares y foso circundante. En 1816, la heroína independentista <strong>Luisa Cáceres de Arismendi</strong> estuvo retenida temporalmente en sus calabozos antes de ser trasladada a España.</p>",
+        santarosaHistory: "<p>Construido entre 1677 y 1683 tras el cruento saqueo del pirata francés en 1677, esta altiva fortaleza domina estrátegicamente todo el Valle de Santa Lucía.</p><p>Es mundialmente famoso por ser la cárcel de calicanto donde estuvo prisionera la heroína <strong>Luisa Cáceres de Arismendi</strong> a sus 16 años, lugar trágico donde dio a luz a su hija que falleció al nacer. Se conserva la célebre inscripción de su calabozo: <em>\"Sin patria no quiero vida\"</em>.</p>",
+        feedbackTitle: "Califica tu Experiencia Turística",
+        feedbackDesc: "Tus valiosas opiniones ayudan a preservar y difundir nuestro patrimonio histórico regional.",
+        labelName: "Tu Nombre:",
+        labelFortress: "Fortaleza Visitada:",
+        labelRating: "Puntuación:",
+        labelComment: "Comentarios o Consejos:",
+        btnSubmit: "Publicar Opinión",
+        reviewsListTitle: "Opiniones Recientes",
+        creditModalTitle: "Créditos del Proyecto Académico",
+        tutorLabel: "Tutora Académica:",
+        municipalityLabel: "Municipio / Ubicación:",
+        institutionLabel: "Institución / Ámbito:",
+        institutionVal: "Proyecto de Investigación Turística y Patrimonial Digital",
+        creditDesc: "Este recurso tecnológico interactivo ha sido desarrollado como una herramienta digital educativa y turística orientada a promover el patrimonio histórico y la difusión cultural de los castillos y fortines de Nueva Esparta.",
+        btnClose: "Cerrar Ventana"
+      },
+      en: {
+        subtitle: "Network of Castles and Forts of Margarita Island",
+        btnCredits: "Academic Credits",
+        heroBadge: "Historical & Tourist Heritage",
+        heroTitle: "Colonial Fortresses of the Caribbean Pearl",
+        heroDesc: "Explore the vibrant liberation history, magnificent colonial military architecture, and breathtaking panoramic views of the Caribbean Sea across its three most iconic strongholds.",
+        locJuanGriego: "Juan Griego - Gaspar Marcano Municipality",
+        locPampatar: "Pampatar - Maneiro Municipality",
+        locAsuncion: "La Asunción - Capital of Nueva Esparta State",
+        btnGPS: "View GPS Location",
+        galleryTitle: "Real Photo Gallery",
+        clickEnlarge: "Click on any image to view in high resolution",
+        historyTitle: "Enriched Historical Overview",
+        builtYear: "Year Built",
+        attraction: "Main Attraction",
+        galeraSunset: "Sunsets and stories by local youth guides",
+        borromeoAttr: "Defensive moat, brass cannons, and historical museum",
+        santarosaAttr: "Luisa C. de Arismendi dungeon and panoramic watchtower",
+        galeraHistory: "<p>Built in 1811 by the Provincial Junta of Margarita atop a strategic hill to watch over the port of Juan Griego and La Galera bay against naval raids.</p><p>It was the glorious stage for the heartbreaking <strong>Battle of Juan Griego in August 1817</strong>. During this patriot fight against General Pablo Morillo's royalist troops, gunpowder exploded inside the fort's storehouse, taking the lives of its brave defenders and giving rise to the name of the adjacent <em>Laguna de Los Mártires</em> (Lagoon of the Martyrs).</p>",
+        borromeoHistory: "<p>The most advanced and best-preserved colonial military fortification on Margarita. Designed by military engineer Don Juan Betín, construction began in 1662 following repeated raids by Dutch and English privateers.</p><p>Featuring a classic star shape with corner bastions and a surrounding moat, in 1816 independence heroine <strong>Luisa Cáceres de Arismendi</strong> was held prisoner in its dungeons before her exile to Spain.</p>",
+        santarosaHistory: "<p>Constructed between 1677 and 1683 following the brutal raid by French pirates in 1677, this elevated fortress strategically commands the entire Santa Lucía Valley.</p><p>It is internationally renowned as the stone prison where 16-year-old heroine <strong>Luisa Cáceres de Arismendi</strong> was held captive, tragically giving birth to a baby daughter who died at birth. The famous cell inscription remains: <em>\"Without a homeland, I do not want life\"</em>.</p>",
+        feedbackTitle: "Rate Your Tourist Experience",
+        feedbackDesc: "Your feedback helps preserve and promote our regional historical heritage.",
+        labelName: "Your Name:",
+        labelFortress: "Fortress Visited:",
+        labelRating: "Rating:",
+        labelComment: "Comments or Tips:",
+        btnSubmit: "Submit Review",
+        reviewsListTitle: "Recent Reviews",
+        creditModalTitle: "Academic Project Credits",
+        tutorLabel: "Academic Advisor:",
+        municipalityLabel: "Municipality / Location:",
+        institutionLabel: "Institution / Scope:",
+        institutionVal: "Digital Heritage & Tourism Research Project",
+        creditDesc: "This interactive technological resource has been developed as an educational and tourism digital tool aimed at promoting the historical heritage and cultural dissemination of Nueva Esparta's castles and forts.",
+        btnClose: "Close Window"
+      }
+    };
+
+    let currentLang = 'es';
+
+    function switchLanguage(lang) {
+      currentLang = lang;
+      const btnEs = document.getElementById('btn-lang-es');
+      const btnEn = document.getElementById('btn-lang-en');
+      if (lang === 'es') {
+        btnEs.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-500 text-colonial-navy shadow-sm";
+        btnEn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white";
+      } else {
+        btnEn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-500 text-colonial-navy shadow-sm";
+        btnEs.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white";
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          if (key.endsWith('History')) {
+            el.innerHTML = i18n[lang][key];
+          } else {
+            el.textContent = i18n[lang][key];
+          }
+        }
+      });
+    }
+
+    function openLightbox(imgUrl, caption) {
+      document.getElementById('lightbox-img').src = imgUrl;
+      document.getElementById('lightbox-caption').textContent = caption;
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-modal').classList.add('hidden');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    let currentRating = 5;
+
+    function setRating(val) {
+      currentRating = val;
+      document.getElementById('review-rating-val').value = val;
+      const stars = document.querySelectorAll('#star-rating .star-btn');
+      stars.forEach((star, index) => {
+        if (index < val) {
+          star.classList.remove('text-slate-300');
+          star.classList.add('text-amber-400');
+        } else {
+          star.classList.remove('text-amber-400');
+          star.classList.add('text-slate-300');
+        }
+      });
+    }
+
+    function loadReviews() {
+      const defaultReviews = [
+        {
+          name: "Carlos Mendoza",
+          fort: "Fortín de La Galera",
+          rating: 5,
+          comment: "¡El atardecer desde este fortín es inigualable! Los niños guías locales cuentan la historia con muchísima pasión.",
+          date: "2026-02-14"
+        },
+        {
+          name: "Elena Rostova",
+          fort: "Castillo Santa Rosa",
+          rating: 5,
+          comment: "Impresionante sentir la historia en el calabozo de Luisa Cáceres. Una vista hermosa de toda La Asunción.",
+          date: "2026-03-01"
+        }
+      ];
+
+      const saved = localStorage.getItem('margarita_castillos_reviews');
+      const reviews = saved ? JSON.parse(saved) : defaultReviews;
+      
+      const container = document.getElementById('reviews-container');
+      const countEl = document.getElementById('review-count');
+      countEl.textContent = reviews.length;
+      container.innerHTML = '';
+
+      reviews.forEach(r => {
+        const starsHtml = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        const card = document.createElement('div');
+        card.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-1.5 shadow-sm";
+        card.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-slate-800 text-sm">${escapeHtml(r.name)}</span>
+            <span class="text-amber-500 font-bold tracking-wider">${starsHtml}</span>
+          </div>
+          <div class="text-amber-700 font-semibold">${escapeHtml(r.fort)}</div>
+          <p class="text-slate-600 italic">"${escapeHtml(r.comment)}"</p>
+          <div class="text-[10px] text-slate-400 text-right">${r.date}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function saveReview(e) {
+      e.preventDefault();
+      const name = document.getElementById('review-name').value.trim();
+      const fort = document.getElementById('review-fort').value;
+      const rating = parseInt(document.getElementById('review-rating-val').value, 10);
+      const comment = document.getElementById('review-comment').value.trim();
+
+      if (!name || !comment) return;
+
+      const newReview = {
+        name,
+        fort,
+        rating,
+        comment,
+        date: new Date().toISOString().split('T')[0]
+      };
+
+      const saved = localStorage.getItem('margarita_castillos_reviews');
+      const reviews = saved ? JSON.parse(saved) : [];
+
+      reviews.unshift(newReview);
+      localStorage.setItem('margarita_castillos_reviews', JSON.stringify(reviews));
+
+      document.getElementById('review-name').value = '';
+      document.getElementById('review-comment').value = '';
+      setRating(5);
+
+      loadReviews();
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
+    }
+
+    window.onload = function() {
+      loadReviews();
+      setRating(5);
+      const yearEl = document.getElementById('current-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    };
+  </script>
+</body>
+</html>
